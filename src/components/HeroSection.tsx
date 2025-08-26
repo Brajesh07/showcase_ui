@@ -27,7 +27,7 @@ const HeroSection = () => {
     return () => window.removeEventListener("resize", updateFontSize);
   }, []);
   return (
-    <div className="container mx-auto relative h-screen p-8 overflow-hidden">
+    <div className="container mx-auto mt-11 md:mt-0 relative h-screen md:h-[780px] p-8 overflow-hidden">
       <div className="main-text flex w-full flex-col text-center gap-4 md:gap-9 md:text-left">
         <h1
           className="font-anton main-heading leading-none tracking-tight uppercase"
