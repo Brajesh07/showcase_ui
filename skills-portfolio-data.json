@@ -1,0 +1,87 @@
+{
+  "skills_sections": [
+    {
+      "title": "UI, UX & Graphic Design",
+      "description": "UI refers to the screens, buttons, toggles, icons, and other visual elements that you interact with when using a website, app, or other electronic devices. UX refers to the entire interaction you have with a product, including how you feel about the interaction. I have been working in the IT sector for 7+ years and UI/UX design is the area where I have invested most of my time and expertise. My experience spans from creating wireframes and prototypes to developing complete design systems that enhance user engagement and satisfaction.",
+      "icon": "design",
+      "proficiency": "advanced",
+      "years_experience": "7+"
+    },
+    {
+      "title": "Front End Development",
+      "description": "A front-end developer creates websites and applications using web languages such as HTML, CSS, and JavaScript that allow users to access and interact with the site or app. When you visit a website, the design elements you see were created by a frontend developer. I have extensive knowledge of HTML5, CSS3, and modern JavaScript (ES6+), along with advanced proficiency in React.js and Next.js. My strength lies in converting design mockups into pixel-perfect, responsive web applications that work seamlessly across all devices.",
+      "icon": "code",
+      "proficiency": "advanced",
+      "years_experience": "5+"
+    },
+    {
+      "title": "VFX & Motion Graphics",
+      "description": "A VFX artist is responsible for creating visual images, animations, and special effects to enhance film, television, and online and console gaming. They create simulations and mockups for visual storytelling. I am always inspired by games and especially movies like Toy Story, Harry Potter, and other visual masterpieces. My experience with Adobe After Effects, Premiere Pro, and motion graphics has enabled me to create engaging educational content and animated graphics that bring static designs to life.",
+      "icon": "video",
+      "proficiency": "intermediate",
+      "years_experience": "3+"
+    },
+    {
+      "title": "Backend Development",
+      "description": "Backend development involves server-side programming that powers the functionality behind web applications. It includes database management, API development, and server logic that handles data processing and storage. While my primary expertise lies in frontend development, I have beginner-level experience with Node.js and Python for creating basic CRUD operations, API integrations, and simple server-side functionality. This foundational knowledge helps me collaborate effectively with backend teams and understand the full-stack development process.",
+      "icon": "server",
+      "proficiency": "beginner",
+      "years_experience": "1+"
+    }
+  ],
+  "technical_stack": {
+    "design_tools": [
+      "Figma",
+      "Adobe XD",
+      "Photoshop",
+      "Illustrator",
+      "Sketch",
+      "InVision"
+    ],
+    "frontend_technologies": [
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6+)",
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Bootstrap",
+      "Tailwind CSS",
+      "Chakra UI",
+      "ShadCN",
+      "Material UI"
+    ],
+    "motion_graphics": [
+      "Adobe After Effects",
+      "Adobe Premiere Pro",
+      "Adobe Audition",
+      "Motion Design",
+      "Video Editing"
+    ],
+    "backend_basics": [
+      "Node.js (Beginner)",
+      "Python (Beginner)",
+      "REST APIs (Basic)",
+      "Database Concepts (Basic)"
+    ],
+    "development_tools": [
+      "VS Code",
+      "Git",
+      "GitHub",
+      "Chrome DevTools",
+      "npm/yarn",
+      "Webpack",
+      "Vite"
+    ]
+  },
+  "proficiency_levels": {
+    "advanced": "7+ years of professional experience with deep expertise",
+    "intermediate": "3-5 years of experience with solid working knowledge",
+    "beginner": "1-2 years of exposure with basic understanding"
+  },
+  "professional_focus": {
+    "primary": ["UI/UX Design", "Frontend Development"],
+    "secondary": ["Motion Graphics", "Graphic Design"],
+    "learning": ["Backend Development", "Full-Stack Integration"]
+  }
+}

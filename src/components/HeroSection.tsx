@@ -27,7 +27,8 @@ const HeroSection = () => {
     return () => window.removeEventListener("resize", updateFontSize);
   }, []);
   return (
-    <div className="container mx-auto mt-11 md:mt-0 relative h-screen md:h-[780px] p-8 overflow-hidden">
+    <div className="container mx-auto mt-11 md:mt-0 md:relative h-full p-8 md:h-[680px] lg:h-[780px] overflow-hidden">
+      {/* md:h-[780px] */}
       <div className="main-text flex w-full flex-col text-center gap-4 md:gap-9 md:text-left">
         <h1
           className="font-anton main-heading leading-none tracking-tight uppercase"
@@ -47,7 +48,7 @@ const HeroSection = () => {
           of Designing and Corporate Identity.
         </p>
       </div>
-      <div className="canvas">
+      <div className="hidden lg:block canvas">
         <div className="h-full w-full">
           <Spline
             scene="https://prod.spline.design/ph13026ScH23LUeZ/scene.splinecode"
