@@ -2,8 +2,8 @@
 import HeroSection from "@/components/HeroSection";
 import HeaderNav from "../components/HeaderNav";
 import MobileMenu from "@/components/MobileMenu";
-// import FeatureSection from "@/components/FeatureSection";
 import SkillsFeatureSection from "@/components/SkillsFeatureSection";
+import ProductShowcase from "@/components/ProductShowcase";
 
 export default function Home() {
   return (
@@ -16,8 +16,8 @@ export default function Home() {
       </div>
 
       <HeroSection />
-      {/* <FeatureSection /> */}
       <SkillsFeatureSection />
+      <ProductShowcase />
     </div>
   );
 }
