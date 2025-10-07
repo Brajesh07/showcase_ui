@@ -1,6 +1,15 @@
+"use client";
+
 import React from "react";
 import ProductCard from "./ProductCard";
 import { images } from "@/assest";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface Product {
   id: number;
@@ -69,7 +78,7 @@ const ProductShowcase: React.FC = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+    <section className="py-20 px-4 bg-[#F5F5F7]">
       {/* Section Header */}
       <div className="text-center mb-16">
         <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -77,21 +86,37 @@ const ProductShowcase: React.FC = () => {
         </h2>
       </div>
 
-      {/* Products Grid */}
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-center gap-6 flex-wrap">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              productName={product.productName}
-              subtitle={product.subtitle}
-              imageUrl={product.imageUrl}
-              backgroundColor={product.backgroundColor}
-              accentColor={product.accentColor}
-              onShopClick={() => handleShopClick(product.productName)}
-            />
-          ))}
-        </div>
+      {/* Products Carousel */}
+      <div className="max-w-7xl mx-auto px-12">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="ml-4 py-11 gap-5">
+            {products.map((product) => (
+              <CarouselItem
+                key={product.id}
+                className="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
+              >
+                <div className="p-1">
+                  <ProductCard
+                    productName={product.productName}
+                    subtitle={product.subtitle}
+                    imageUrl={product.imageUrl}
+                    backgroundColor={product.backgroundColor}
+                    accentColor={product.accentColor}
+                    onShopClick={() => handleShopClick(product.productName)}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0" />
+          <CarouselNext className="right-0" />
+        </Carousel>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ const meta: Meta<typeof ProductShowcase> = {
     docs: {
       description: {
         component:
-          "A complete product showcase section displaying Adobe Creative Suite products with official brand colors. Features a responsive grid layout with hover animations (scale-125 and translate-y on images) and gradient background.",
+          "A carousel-based product showcase section displaying Adobe Creative Suite products with official brand colors. Built with Shadcn carousel component (embla-carousel-react), featuring smooth horizontal scrolling, navigation arrows, loop functionality, and responsive breakpoints. Cards include hover animations (scale-125 and translate-y on images).",
       },
     },
   },
@@ -24,7 +24,7 @@ export const Default: Story = {
     docs: {
       description: {
         story:
-          "The default product showcase featuring all 6 Adobe Creative Suite products: Photoshop (blue), Illustrator (orange), After Effects (purple), Premiere Pro (indigo), XD (magenta), and InDesign (pink). Each card includes official Adobe brand colors, centered circular product images, and smooth hover animations.",
+          "The default carousel showcasing all 6 Adobe Creative Suite products: Photoshop (blue), Illustrator (orange), After Effects (purple), Premiere Pro (indigo), XD (magenta), and Adobe Audition (cyan). Features navigation arrows, infinite loop, and smooth scrolling. Each card includes official Adobe brand colors, centered circular product images, and hover animations.",
       },
     },
   },
@@ -38,7 +38,7 @@ export const MobileView: Story = {
     docs: {
       description: {
         story:
-          "Mobile responsive view with centered single-column layout. Cards maintain their 270px width with full hover functionality including image scale (125%) and upward translation.",
+          "Mobile responsive carousel view with one card visible at a time (basis-full). Touch-friendly swipe gestures enabled. Navigation arrows positioned at edges. Cards maintain their 270px width with full hover functionality including image scale (125%) and upward translation.",
       },
     },
   },
@@ -52,7 +52,7 @@ export const TabletView: Story = {
     docs: {
       description: {
         story:
-          "Tablet view with 2-3 column grid layout. All Adobe brand colors and hover effects are maintained with proper spacing between cards.",
+          "Tablet carousel view displaying 2-3 cards (basis-1/2 to basis-1/3). Smooth scroll-snap behavior for natural card alignment. All Adobe brand colors and hover effects are maintained with proper spacing between cards.",
       },
     },
   },
@@ -66,7 +66,7 @@ export const DesktopView: Story = {
     docs: {
       description: {
         story:
-          "Desktop view showcasing all 6 products in a multi-column grid with full hover effects. Images scale to 125% and translate upward with 500ms smooth transitions. Features gradient background (pink-50 → purple-50 → blue-50) and 'learn more' button text.",
+          "Desktop carousel view displaying 4-5 cards at once (basis-1/4 to basis-1/5). Features left/right navigation arrows, infinite loop, and embla-carousel smooth scrolling. Images scale to 125% and translate upward with 500ms smooth transitions. Background color #F5F5F7 (soft gray) with 'learn more' button text. Carousel supports keyboard navigation and touch gestures.",
       },
     },
   },
