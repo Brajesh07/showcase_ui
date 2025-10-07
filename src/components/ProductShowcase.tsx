@@ -87,35 +87,37 @@ const ProductShowcase: React.FC = () => {
       </div>
 
       {/* Products Carousel */}
-      <div className="max-w-7xl mx-auto px-12">
+      <div className="max-full mx-auto px-4 sm:px-8 lg:px-12">
         <Carousel
           opts={{
             align: "start",
             loop: true,
+            slidesToScroll: 1,
           }}
           className="w-full"
         >
-          <CarouselContent className="ml-4 py-11 gap-5">
+          <CarouselContent className="ml-4 py-8">
             {products.map((product) => (
               <CarouselItem
                 key={product.id}
-                className="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
+                className="pl-8"
+                style={{ flex: "0 0 300px" }}
               >
-                <div className="p-1">
-                  <ProductCard
-                    productName={product.productName}
-                    subtitle={product.subtitle}
-                    imageUrl={product.imageUrl}
-                    backgroundColor={product.backgroundColor}
-                    accentColor={product.accentColor}
-                    onShopClick={() => handleShopClick(product.productName)}
-                  />
-                </div>
+                <ProductCard
+                  productName={product.productName}
+                  subtitle={product.subtitle}
+                  imageUrl={product.imageUrl}
+                  backgroundColor={product.backgroundColor}
+                  accentColor={product.accentColor}
+                  onShopClick={() => handleShopClick(product.productName)}
+                />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-0" />
-          <CarouselNext className="right-0" />
+          <div className="relative h-fit w-20">
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </div>
         </Carousel>
       </div>
     </section>
