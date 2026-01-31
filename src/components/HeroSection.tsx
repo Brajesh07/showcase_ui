@@ -36,7 +36,7 @@ const HeroSection = () => {
         >
           Brajesh Tanwar
         </h1>
-        <p className="font-oswald text-sm md:text-lg tracking-wide w-full md:w-[600px] z-0 md:z-10">
+        <p className="font-oswald text-sm md:text-lg  w-full md:w-[600px] z-0 md:z-10 tracking-wide">
           A Hybrid designer who can create good graphics and UI and can convert
           them into frontend (HTML CSS JS). My name is Brajesh Tanwar I call
           myself a Hybrid designer, I love to explore the latest web designs and
