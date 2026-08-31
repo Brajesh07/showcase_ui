@@ -2,7 +2,6 @@ import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,104 +10,82 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        oswald: ["var(--font-oswald)", "sans-serif"],
-        anton: ["var(--font-anton)", "sans-serif"],
-        sans: [
-          "var(--font-oswald)",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
+        display: ["var(--font-display)", "ui-rounded", "system-ui", "sans-serif"],
+        sans: ["var(--font-display)", "ui-rounded", "system-ui", "sans-serif"],
+      },
+      fontSize: {
+        "window-title": ["16px", { lineHeight: "1.2", fontWeight: "700" }],
+        h1: ["32px", { lineHeight: "1.15", fontWeight: "700" }],
+        h2: ["22px", { lineHeight: "1.25", fontWeight: "700" }],
+        body: ["15px", { lineHeight: "1.5", fontWeight: "500" }],
+        "icon-label": ["12px", { lineHeight: "1.2", fontWeight: "700" }],
+        caption: ["12px", { lineHeight: "1.4", fontWeight: "500" }],
+      },
+      colors: {
+        ink: "var(--rd-ink)",
+        cream: "var(--rd-cream)",
+        "cream-alt": "var(--rd-cream-alt)",
+        khaki: "var(--rd-khaki)",
+        "sky-blue": "var(--rd-sky-blue)",
+        "grass-light": "var(--rd-grass-light)",
+        "grass-dark": "var(--rd-grass-dark)",
+        "mint-teal": "var(--rd-mint-teal)",
+        "coral-peach": "var(--rd-coral-peach)",
+        "salmon-pink": "var(--rd-salmon-pink)",
+        "salmon-stripe": "var(--rd-salmon-stripe)",
+        mustard: "var(--rd-mustard)",
+        "soft-red": "var(--rd-soft-red)",
+        disabled: "var(--rd-disabled)",
+        "disabled-text": "var(--rd-disabled-text)",
+        muted: "var(--rd-muted)",
+      },
+      borderRadius: {
+        window: "var(--rd-window-radius)",
+        btn: "10px",
+        dock: "20px",
+        squircle: "12px",
+      },
+      borderWidth: {
+        window: "var(--rd-window-border)",
+      },
+      boxShadow: {
+        window: "var(--rd-window-shadow)",
+        hard: "4px 4px 0 0 var(--rd-ink)",
+      },
+      spacing: {
+        "title-bar": "var(--rd-title-bar-height)",
+        "icon-gap": "6px",
       },
       keyframes: {
-        liquid: {
-          "0%,100%": {
-            transform: "translate3d(0,0,0) scale(1)",
-          },
-          "25%": {
-            transform: "translate3d(2%, -4%,0) scale(1.02)",
-          },
-          "50%": {
-            transform: "translate3d(-3%, 3%,0) scale(0.98)",
-          },
-          "75%": {
-            transform: "translate3d(3%,2%,0) scale(1.01)",
-          },
+        "window-pop": {
+          "0%": { transform: "scale(0.9)" },
+          "70%": { transform: "scale(1.04)" },
+          "100%": { transform: "scale(1)" },
         },
-        morph: {
-          "0%,100%": {
-            clipPath:
-              "polygon(0% 15%, 15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%)",
-          },
-          "33%": {
-            clipPath:
-              "polygon(0% 25%, 25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%)",
-          },
-          "66%": {
-            clipPath:
-              "polygon(10% 0%, 90% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%, 10% 0%)",
-          },
+        "window-close": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(0.9)", opacity: "0" },
         },
-        "spin-slow": {
-          "0%": {
-            transform: "rotate(0deg)",
-          },
+        "window-minimize": {
+          "0%": { transform: "scale(1) translateY(0)", opacity: "1" },
           "100%": {
-            transform: "rotate(360deg)",
+            transform: "scale(0.12) translateY(42vh)",
+            opacity: "0",
           },
+        },
+        "dock-bounce": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "22%": { transform: "translateY(-18px)" },
+          "40%": { transform: "translateY(0)" },
+          "58%": { transform: "translateY(-10px)" },
+          "76%": { transform: "translateY(0)" },
         },
       },
       animation: {
-        liquid: "liquid 6s ease-in-out infinite",
-        morph: "morph 14s linear infinite",
-        "spin-slow": "spin-slow 12s linear infinite",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        chart: {
-          1: "hsl(var(--chart-1))",
-          2: "hsl(var(--chart-2))",
-          3: "hsl(var(--chart-3))",
-          4: "hsl(var(--chart-4))",
-          5: "hsl(var(--chart-5))",
-        },
+        "window-pop": "window-pop 220ms ease-out both",
+        "window-close": "window-close 150ms ease-in both",
+        "window-minimize": "window-minimize 320ms ease-in both",
+        "dock-bounce": "dock-bounce 700ms ease-in-out",
       },
     },
   },

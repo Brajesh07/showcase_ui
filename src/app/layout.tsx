@@ -1,34 +1,27 @@
-import { Oswald, Anton } from "next/font/google";
-import "./globals.css";
+import { Quicksand } from "next/font/google";
 import Script from "next/script";
+import type { ReactNode } from "react";
+import { DesktopApp } from "@/components/os/DesktopApp";
+import "./globals.css";
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+const display = Quicksand({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const anton = Anton({
-  variable: "--font-anton",
-  subsets: ["latin"],
-  weight: ["400"],
+  weight: ["500", "700"],
 });
 
 export const metadata = {
-  title: "Brajesh Tanwar | Hybrid Designer & Visual Expert",
+  title: "Brajesh Tanwar | Full-stack JavaScript developer",
   description:
-    "As a hybrid designer, I am innovative and tech-savvy, crafting modern and impactful designs as a creative visual expert. Explore GraphicStack for more!",
+    "Portfolio of Brajesh Tanwar — full-stack JavaScript developer building web apps, mobile apps, and AI-powered tools.",
 };
 
-const GTM_ID = "G-PKWPEL7M09"; // Replace with your actual GTM ID
-
-import { ReactNode } from "react";
+const GTM_ID = "G-PKWPEL7M09";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* GTM Script */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -43,17 +36,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body className={`${oswald.variable} ${anton.variable} antialiased`}>
-        {/* GTM NoScript (For Non-JS users) */}
+      <body className={`${display.variable} antialiased`}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
+          />
         </noscript>
-        {children}
+        <DesktopApp>{children}</DesktopApp>
       </body>
     </html>
   );

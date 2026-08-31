@@ -11,10 +11,10 @@ const preview: Preview = {
     },
     layout: 'centered',
     backgrounds: {
-      default: 'dark',
+      default: "khaki",
       values: [
-        { name: 'dark', value: '#0a0a0a' },
-        { name: 'light', value: '#ffffff' },
+        { name: "khaki", value: "#EFE3C6" },
+        { name: "cream", value: "#F8F1DE" },
       ],
     },
     a11y: { test: 'todo' }
