@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { DesktopIcon } from "@/components/os/DesktopIcon";
 import { DesktopWidget } from "@/components/os/DesktopWidget";
 import { Dock } from "@/components/os/Dock";
-import { MobileAppGrid } from "@/components/os/MobileAppGrid";
+import { MobileHomeCarousel } from "@/components/os/MobileHomeCarousel";
 import { MobileDock } from "@/components/os/MobileDock";
 import { MobileStatusBar } from "@/components/os/MobileStatusBar";
 import { SceneBackdrop } from "@/components/os/SceneBackdrop";
@@ -61,9 +61,9 @@ export function OsShell({ children }: { children: ReactNode }) {
         <MobileStatusBar />
 
         {isMobileHome ? (
-          <div className="flex-1">
-            <p className="px-5 pb-2 pt-3 text-h2">{profile.name}</p>
-            <MobileAppGrid />
+          <div className="flex min-h-0 flex-1 flex-col">
+            <p className="px-5 pb-1 pt-3 text-h2">{profile.name}</p>
+            <MobileHomeCarousel />
           </div>
         ) : (
           <div className="flex min-h-0 flex-1 flex-col">{children}</div>

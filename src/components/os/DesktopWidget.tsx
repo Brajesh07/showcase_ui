@@ -90,7 +90,12 @@ function Meter({
   );
 }
 
-export function DesktopWidget() {
+export function DesktopWidget({
+  variant = "desktop",
+}: {
+  variant?: "desktop" | "mobile";
+}) {
+  const isMobile = variant === "mobile";
   const { time, date } = useClock();
   const { cpu, ram } = useFakeLoad();
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -183,7 +188,14 @@ export function DesktopWidget() {
   }, []);
 
   return (
-    <aside className="pointer-events-auto absolute left-8 top-8 z-10 hidden w-[228px] flex-col rounded-window border-2 border-ink bg-cream px-4 py-4 md:flex">
+    <aside
+      className={cn(
+        "pointer-events-auto relative rounded-window border-2 border-ink bg-cream",
+        isMobile
+          ? "flex h-full w-full flex-col overflow-hidden px-3 py-3"
+          : "absolute left-8 top-8 z-10 hidden w-[228px] flex-col px-4 py-4 md:flex"
+      )}
+    >
       <video
         ref={videoRef}
         muted
@@ -192,24 +204,28 @@ export function DesktopWidget() {
         preload="auto"
         className="pointer-events-none absolute h-px w-px opacity-0"
       />
-      <div className="mx-auto size-14">
-        <HomeGlyph />
-      </div>
-      <p className="mt-3 text-center text-h2">{time}</p>
-      <p className="text-center text-caption text-muted">{date}</p>
+      <div className={cn("min-w-0", isMobile && "flex flex-1 flex-col")}>
+        <div className={cn("mx-auto", isMobile ? "size-12" : "size-14")}>
+          <HomeGlyph />
+        </div>
+        <p className={cn("text-center text-h2", isMobile ? "mt-2" : "mt-3")}>
+          {time}
+        </p>
+        <p className="text-center text-caption text-muted">{date}</p>
 
-      <div className="mt-4 space-y-2">
-        <Meter
-          label="vol"
-          value={volume}
-          fillClass="bg-sky-blue"
-          onSeek={setVolume}
-        />
-        <Meter label="cpu" value={cpu} fillClass="bg-grass-light" />
-        <Meter label="ram" value={ram} fillClass="bg-salmon-pink" />
+        <div className={cn("space-y-2", isMobile ? "mt-3" : "mt-4")}>
+          <Meter
+            label="vol"
+            value={volume}
+            fillClass="bg-sky-blue"
+            onSeek={setVolume}
+          />
+          <Meter label="cpu" value={cpu} fillClass="bg-grass-light" />
+          <Meter label="ram" value={ram} fillClass="bg-salmon-pink" />
+        </div>
       </div>
 
-      <div className="mt-5 flex items-center gap-3">
+      <div className={cn("flex items-center gap-3", isMobile ? "mt-auto" : "mt-5")}>
         <div className="size-12 shrink-0 overflow-hidden rounded-[4px] border-2 border-ink bg-cream">
           <div ref={hostRef} className="h-full w-full" />
         </div>
