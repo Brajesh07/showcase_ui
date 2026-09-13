@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { FaPause, FaPlay } from "react-icons/fa";
+import {
+  TbPlayerTrackNextFilled,
+  TbPlayerTrackPrevFilled,
+} from "react-icons/tb";
 import { HomeGlyph } from "@/components/os/OsIcons";
 import { coverSquareCanvas, ditherSourceToCanvas } from "@/lib/dither";
 import { DEFAULT_VOLUME, playlist } from "@/data/playlist";
@@ -231,29 +236,36 @@ export function DesktopWidget({
         </div>
         <div className="min-w-0 flex-1">
           <p className="truncate text-caption">{track.title}</p>
-          <div className="mt-1 flex items-center gap-3 text-h2 leading-none">
+          <div className="mt-1 flex items-center gap-3 text-ink">
             <button
               type="button"
               aria-label="Previous"
+              className="inline-flex items-center justify-center"
               onClick={() =>
                 goTo((index - 1 + playlist.length) % playlist.length)
               }
             >
-              ⏮
+              <TbPlayerTrackPrevFilled aria-hidden className="size-5" />
             </button>
             <button
               type="button"
               aria-label={playing ? "Pause" : "Play"}
+              className="inline-flex items-center justify-center"
               onClick={togglePlay}
             >
-              {playing ? "⏸" : "▶"}
+              {playing ? (
+                <FaPause aria-hidden className="size-4" />
+              ) : (
+                <FaPlay aria-hidden className="size-4" />
+              )}
             </button>
             <button
               type="button"
               aria-label="Next"
+              className="inline-flex items-center justify-center"
               onClick={() => goTo((index + 1) % playlist.length)}
             >
-              ⏭
+              <TbPlayerTrackNextFilled aria-hidden className="size-5" />
             </button>
           </div>
         </div>
