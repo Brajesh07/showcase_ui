@@ -1,67 +1,157 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { profile } from "@/data/site";
+import { useState, type ReactNode } from "react";
+import { DitheredImage } from "@/components/os/DitheredImage";
+import {
+  CallGlyph,
+  InstagramGlyph,
+  LinkedInGlyph,
+  MailGlyph,
+  MessageGlyph,
+  WhatsAppGlyph,
+} from "@/components/os/OsIcons";
+import { OsDialog } from "@/components/os/OsDialog";
+import { OsNavLink } from "@/components/os/OsNavLink";
+import {
+  contactConfig,
+  isContactPlaceholder,
+  smsHref,
+  telHref,
+  whatsappHref,
+} from "@/data/contact-config";
 
-export function ContactWindow() {
-  const [sent, setSent] = useState(false);
-
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const from = String(data.get("email") ?? "");
-    const message = String(data.get("message") ?? "");
-    const subject = encodeURIComponent(`Hello from ${name || "the desktop"}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${from})`);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setSent(true);
-  }
-
+function Action({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
   return (
     <>
-      <p className="text-body">
-        Want to work together? Drop a note. One button. No maze of forms.
-      </p>
-      <p className="mt-3 text-body">
-        Direct line: {profile.email} · {profile.phone}
-      </p>
-      <form className="mt-6 space-y-4" onSubmit={onSubmit}>
-        <label className="block">
-          <span className="text-caption text-muted">Your name</span>
-          <input
-            name="name"
-            required
-            className="mt-1 w-full rounded-btn border-2 border-ink bg-cream-alt px-3 py-2 text-body outline-none focus:ring-2 focus:ring-ink"
-          />
-        </label>
-        <label className="block">
-          <span className="text-caption text-muted">Your email</span>
-          <input
-            name="email"
-            type="email"
-            required
-            className="mt-1 w-full rounded-btn border-2 border-ink bg-cream-alt px-3 py-2 text-body outline-none focus:ring-2 focus:ring-ink"
-          />
-        </label>
-        <label className="block">
-          <span className="text-caption text-muted">Message</span>
-          <textarea
-            name="message"
-            required
-            rows={4}
-            className="mt-1 w-full rounded-btn border-2 border-ink bg-cream-alt px-3 py-2 text-body outline-none focus:ring-2 focus:ring-ink"
-          />
-        </label>
-        <Button type="submit">Send message</Button>
-        {sent ? (
-          <p className="text-caption text-muted">
-            Opening your mail app. If nothing happens, write {profile.email}{" "}
-            directly.
-          </p>
-        ) : null}
-      </form>
+      <span className="flex size-14 items-center justify-center overflow-hidden rounded-full border-2 border-ink bg-cream">
+        <span className="size-9">{children}</span>
+      </span>
+      <span className="text-icon-label">{label}</span>
     </>
+  );
+}
+
+const actionClass =
+  "flex flex-col items-center gap-1.5 text-ink active:scale-[0.94]";
+
+export function ContactWindow() {
+  const [callOpen, setCallOpen] = useState(false);
+  const phoneReady = !isContactPlaceholder(contactConfig.phoneDigits);
+
+  return (
+    <div className="flex flex-col items-center pt-2">
+      <DitheredImage
+        src={contactConfig.photoSrc}
+        alt={contactConfig.name}
+        className="size-28 overflow-hidden rounded-full border-[3px] border-ink bg-cream"
+        canvasClassName="object-cover"
+        pixelSize={2}
+        maxWidth={280}
+        cover
+      />
+      <h1 className="mt-4 text-center text-h1">{contactConfig.name}</h1>
+
+      <div className="mt-3 flex items-center gap-3">
+        <OsNavLink
+          href="/contact/linkedin"
+          aria-label="LinkedIn"
+          className="flex size-11 items-center justify-center rounded-full border-2 border-ink bg-cream active:scale-[0.94]"
+        >
+          <span className="size-7">
+            <LinkedInGlyph />
+          </span>
+        </OsNavLink>
+        <OsNavLink
+          href="/contact/instagram"
+          aria-label="Instagram"
+          className="flex size-11 items-center justify-center rounded-full border-2 border-ink bg-cream active:scale-[0.94]"
+        >
+          <span className="size-7">
+            <InstagramGlyph />
+          </span>
+        </OsNavLink>
+      </div>
+
+      <div className="my-5 h-0 w-full border-t-2 border-ink" />
+
+      <div className="grid w-full grid-cols-4 gap-2">
+        <button
+          type="button"
+          aria-label="Call"
+          className={actionClass}
+          onClick={() => setCallOpen(true)}
+        >
+          <Action label="Call">
+            <CallGlyph />
+          </Action>
+        </button>
+        {phoneReady ? (
+          <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp"
+            className={actionClass}
+          >
+            <Action label="WhatsApp">
+              <WhatsAppGlyph />
+            </Action>
+          </a>
+        ) : (
+          <span className={actionClass} aria-label="WhatsApp">
+            <Action label="WhatsApp">
+              <WhatsAppGlyph />
+            </Action>
+          </span>
+        )}
+        {phoneReady ? (
+          <a href={smsHref()} aria-label="Message" className={actionClass}>
+            <Action label="Message">
+              <MessageGlyph />
+            </Action>
+          </a>
+        ) : (
+          <span className={actionClass} aria-label="Message">
+            <Action label="Message">
+              <MessageGlyph />
+            </Action>
+          </span>
+        )}
+        <OsNavLink href="/contact/mail" className={actionClass} aria-label="Mail">
+          <Action label="Mail">
+            <MailGlyph />
+          </Action>
+        </OsNavLink>
+      </div>
+
+      {callOpen ? (
+        <OsDialog
+          title={`Call ${contactConfig.name}?`}
+          onClose={() => setCallOpen(false)}
+          actions={[
+            {
+              label: "Cancel",
+              variant: "secondary",
+              onClick: () => setCallOpen(false),
+            },
+            {
+              label: "Call",
+              onClick: () => {
+                setCallOpen(false);
+                if (phoneReady) window.location.href = telHref();
+              },
+            },
+          ]}
+        >
+          <p>{contactConfig.phone}</p>
+        </OsDialog>
+      ) : null}
+    </div>
   );
 }

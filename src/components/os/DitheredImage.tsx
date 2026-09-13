@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { OsEmptyFrame } from "@/components/os/OsEmptyFrame";
 import { coverSquareCanvas, ditherSourceToCanvas } from "@/lib/dither";
 import { cn } from "@/lib/utils";
 
@@ -67,16 +68,7 @@ export function DitheredImage({
   }, [alt, canvasClassName, cover, maxWidth, pixelSize, src]);
 
   if (failed) {
-    return (
-      <div
-        className={cn(
-          "flex items-center justify-center border-2 border-ink bg-cream text-caption text-muted",
-          className
-        )}
-      >
-        Image missing
-      </div>
-    );
+    return <OsEmptyFrame label="No image" className={className} />;
   }
 
   return <div ref={hostRef} className={className} />;

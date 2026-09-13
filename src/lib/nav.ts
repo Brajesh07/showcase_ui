@@ -5,7 +5,8 @@ export type SceneId =
   | "contact"
   | "settings"
   | "browser"
-  | "notes";
+  | "notes"
+  | "trash";
 
 export type WindowId = string;
 
@@ -13,7 +14,15 @@ export type NavItem = {
   href: string;
   label: string;
   scene: SceneId;
-  icon: "home" | "finder" | "documents" | "contact" | "settings" | "browser" | "notes";
+  icon:
+    | "home"
+    | "finder"
+    | "documents"
+    | "contact"
+    | "settings"
+    | "browser"
+    | "notes"
+    | "trash";
 };
 
 export const desktopSideIcons: NavItem[] = [
@@ -33,6 +42,7 @@ export const desktopSideIcons: NavItem[] = [
     scene: "settings",
     icon: "settings",
   },
+  { href: "/trash", label: "Trash", scene: "trash", icon: "trash" },
 ];
 
 export const dockItems: NavItem[] = [
@@ -55,6 +65,7 @@ export function sceneFromPath(pathname: string): SceneId {
   if (pathname.startsWith("/settings")) return "settings";
   if (pathname.startsWith("/browser")) return "browser";
   if (pathname.startsWith("/notes")) return "notes";
+  if (pathname.startsWith("/trash")) return "trash";
   return "home";
 }
 
@@ -63,9 +74,18 @@ export function hrefToWindowId(href: string): WindowId {
   if (href === "/finder") return "finder";
   if (href === "/documents") return "documents";
   if (href === "/contact") return "contact";
+  if (href === "/contact/mail") return "mail";
+  if (href === "/contact/linkedin") return "linkedin";
+  if (href === "/contact/instagram") return "instagram";
   if (href === "/settings") return "settings";
   if (href === "/browser") return "browser";
   if (href === "/notes") return "notes";
+  if (href === "/trash") return "trash";
+  if (href === "/trash/hobby") return "trash:hobby";
+  if (href === "/trash/games") return "trash:games";
+  if (href === "/trash/hobby/basketball") return "trash:basketball";
+  if (href === "/trash/hobby/sketching") return "trash:sketching";
+  if (href === "/trash/hobby/music") return "trash:music";
   const project = href.match(/^\/finder\/([^/]+)$/);
   if (project) return `project:${project[1]}`;
   const file = href.match(/^\/documents\/([^/]+)$/);
@@ -76,10 +96,12 @@ export function hrefToWindowId(href: string): WindowId {
 export function windowIdToScene(id: WindowId): SceneId {
   if (id === "finder" || id.startsWith("project:")) return "finder";
   if (id === "documents" || id.startsWith("file:")) return "documents";
-  if (id === "contact") return "contact";
+  if (id === "contact" || id === "mail" || id === "linkedin" || id === "instagram")
+    return "contact";
   if (id === "settings") return "settings";
   if (id === "browser") return "browser";
   if (id === "notes") return "notes";
+  if (id === "trash" || id.startsWith("trash:")) return "trash";
   return "home";
 }
 
@@ -87,6 +109,7 @@ export function parseWindowQuery(value: string | null): WindowId | null {
   if (!value) return null;
   if (value.startsWith("project-")) return `project:${value.slice(8)}`;
   if (value.startsWith("file-")) return `file:${value.slice(5)}`;
+  if (value.startsWith("trash-")) return `trash:${value.slice(6)}`;
   if (
     value === "welcome" ||
     value === "finder" ||
@@ -94,7 +117,11 @@ export function parseWindowQuery(value: string | null): WindowId | null {
     value === "contact" ||
     value === "settings" ||
     value === "browser" ||
-    value === "notes"
+    value === "notes" ||
+    value === "trash" ||
+    value === "mail" ||
+    value === "linkedin" ||
+    value === "instagram"
   ) {
     return value;
   }
